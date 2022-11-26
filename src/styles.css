@@ -1,0 +1,67 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /* linear-gradient requires two parameters(two different colors) because it gradually goes from one color to the other. */
+  background: linear-gradient(to right, #00aaff, #7b17c3);
+}
+
+.calculator-grid {
+  display: grid;
+  margin-top: 2rem;
+  /* centers the grid in the center of the page */
+  justify-content: center;
+  /* gives us 4 different columns */
+  grid-template-columns: repeat(4, 6rem);
+  /* determines the height of our boxes, the minmax allows the portion where the numbers display to expand as large as it needs to. The repeat portion gives us 5 different rows of buttons at 6 rem each*/
+  grid-template-rows: minmax(7rem, auto) repeat(5, 6rem);
+}
+
+/* selecting all the buttons inside calculator-grid */
+.calculator-grid > button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 1px solid white;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+/* when user hovers over the button and when its clicked, it will turn a bit more white */
+.calculator-grid > button:hover,
+.calculator-grid > button:focus {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.span-two {
+  grid-column: span 2;
+}
+
+.output {
+  grid-column: 1 / -1;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  /* flex direction column sets the numbers on our output vertically stacked */
+  flex-direction: column;
+  /* flex-end aligns the numbers to the end */
+  align-items: flex-end;
+  /* space-around puts space between the previous operand and current operand */
+  justify-content: space-around;
+  padding: 0.75rem;
+  /* word wrap allows the really long numbers to break into the next line */
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.output .previous-operand {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.5rem;
+}
+
+.output .current-operand {
+  color: white;
+  font-size: 2.5rem;
+}
